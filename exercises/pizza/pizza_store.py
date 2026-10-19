@@ -18,14 +18,9 @@ class PizzaStore(ABC):
     # ---------- rank ----------
 
     @abstractmethod
-    def _rank_formula(self, ranks):
-        """Each store decides how to turn employee ranks into a store rank."""
-        pass
-
     def calculate_rank(self):
-        ranks = [employee.pizza_rank for employee in self.employees]
-        self.rank = self._rank_formula(ranks)
-        return self.rank
+        """Each store calculates its rank differently."""
+        pass
 
     def calculate_ranged_rank(self, rank_range):
         """Ask employees with a rank older than rank_range days to rank again, then recalculate."""
@@ -59,14 +54,6 @@ class PizzaStore(ABC):
 
     # ---------- surprises ----------
 
-    def give_surprise(self, employee, surprise):
-        if not self.is_employee(employee):
-            print(f"{employee.first_name} is not an employee of {self.name}")
-            return False
-        employee.pizza_surprise = surprise
-        surprise.activate_surprise()
-        return True
-
     def give_surprise_to_best(self, surprise):
         """Give the surprise to the employee(s) with the highest rank."""
         if not self.employees:
@@ -74,7 +61,8 @@ class PizzaStore(ABC):
         best_rank = max(employee.pizza_rank for employee in self.employees)
         best = [employee for employee in self.employees if employee.pizza_rank == best_rank]
         for employee in best:
-            self.give_surprise(employee, surprise)
+            employee.pizza_surprise = surprise
+            surprise.activate_surprise()
         return best
 
     def take_back_surprise(self, employee):

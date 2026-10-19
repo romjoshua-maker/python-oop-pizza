@@ -44,7 +44,8 @@ def main():
     best = dominos.give_surprise_to_best(FreePizzaSurprise())
     for employee in best:
         print(f"{employee.first_name} got: {employee.pizza_surprise}")
-    hut.give_surprise(avi, BonusSurprise(500))
+    hut.give_surprise_to_best(BonusSurprise(500))
+    print(f"Bonus went to the best of {hut.name}")
 
     print("\n--- Resigning ---")
     hut.resign_employee(noa)  # not an employee of Pizza Hut

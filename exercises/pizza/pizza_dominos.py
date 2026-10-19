@@ -2,6 +2,7 @@ from pizza_store import PizzaStore
 
 
 class PizzaDominos(PizzaStore):
-    def _rank_formula(self, ranks):
+    def calculate_rank(self):
         """Pizza Dominos rank = sum of the employees' ranks."""
-        return sum(ranks)
+        self.rank = sum(employee.pizza_rank for employee in self.employees)
+        return self.rank

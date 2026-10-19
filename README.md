@@ -1,12 +1,10 @@
-# Pizza Management System - Exam II Practice
+# Pizza Management System
 
-Employee management for two pizza stores: **Pizza Hut** and **Pizza Dominos**.
-
-1. Class diagram (below)
-2. Python implementation: `pizza.py`
-3. Submitted as this Git repository
+Exam II practice - Pizza Hut and Pizza Dominos employee management.
 
 ## Class Diagram
+
+Also as an image: [class_diagram.png](class_diagram.png)
 
 ```mermaid
 classDiagram
@@ -24,7 +22,6 @@ classDiagram
         +pizza_surprise: Surprise
         +set_rank()
         +is_rank_valid(rank_range: int) bool
-        +use_surprise()
     }
 
     class Surprise {
@@ -48,12 +45,10 @@ classDiagram
         +calculate_employee_expenses() float
         +hire_employee(employee: PizzaEmployee)
         +resign_employee(employee: PizzaEmployee)
-        +take_back_surprise(employee: PizzaEmployee)
         +give_surprise_to_best_employees(surprise: Surprise)
         +get_ranks() list
         +calculate_rank()* float
         +calculate_ranged_rank(rank_range: int) float
-        +print_store()
     }
 
     class PizzaHut {
@@ -78,13 +73,9 @@ classDiagram
     style PizzaDominos fill:#eefbf2,stroke:#47d07a
 ```
 
-- Pizza Hut rank = **average** of the employees' ranks, Pizza Dominos rank = **sum**.
-- `FreeDessert` (in the tests) isn't a `Surprise` subclass but has `activate_surprise()` - duck typing.
-
 ## Run
 
 ```bash
-python pizza.py
+pip install overrides
+python main.py
 ```
-
-Needs the `overrides` package (`pip install overrides`).
